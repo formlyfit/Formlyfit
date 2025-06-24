@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FormlyFit App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Homescreen -->
+  <div id="homeScreen" class="screen active">
+    <img src="avatar.png" alt="Avatar" class="avatar"/>
+    <h1>Willkommen zurück, Lisa!</h1>
+    <p>„Du brauchst keinen perfekten Start. Nur einen mutigen.“</p>
+    <div class="card">Kalorien: 1.342 / 2.100 kcal</div>
+    <div class="card">Fastenzeit: 15:30</div>
+    <div class="card">
+      <strong>Mahlzeiten:</strong><br/>
+      ✅ Frühstück<br/>
+      🍏 Mittagessen<br/>
+      🍲 Abendessen
+    </div>
+    <button class="btn" onclick="switchScreen()">→ BMI berechnen</button>
+  </div>
+
+  <!-- BMI Screen -->
+  <div id="bmiScreen" class="screen">
+    <h1>BMI Rechner</h1>
+    <input type="number" id="groesse" placeholder="Größe in cm"/>
+    <input type="number" id="gewicht" placeholder="Gewicht in kg"/>
+    <button class="btn" onclick="berechneBMI()">Berechnen</button>
+    <div id="bmiAusgabe" class="card" style="display:none;"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
