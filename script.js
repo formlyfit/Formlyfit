@@ -5,16 +5,21 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   document.getElementById('loginForm').style.display = 'none';
   document.getElementById('registerForm').style.display = 'none';
 
-  // Neues Dashboard anzeigen
-  const dashboardHTML = `
-    <section id="dashboard">
-      <h2>Willkommen zurück, Lisa! 🎉</h2>
-      <img src="avatar-female.png" alt="Dein Avatar" width="200">
-      <p>Dein heutiges Kalorienziel: <strong>1400 kcal</strong></p>
-      <button onclick="alert('Avatar-Editor bald verfügbar!')">👕 Avatar bearbeiten</button>
-      <button onclick="alert('Tracking kommt bald!')">📊 Fortschritt ansehen</button>
+  // Avatar-Editor anzeigen
+  const editorHTML = `
+    <section id="avatarEditor">
+      <h2>Dein Avatar Editor 🧍‍♀️</h2>
+
+      <label>Brustumfang (cm): <input type="number" id="brust"></label><br>
+      <label>Taillenumfang (cm): <input type="number" id="taille"></label><br>
+      <label>Hüftumfang (cm): <input type="number" id="huefte"></label><br>
+      <button onclick="updateAvatar()">Avatar aktualisieren</button>
+
+      <div id="avatarPreview" style="margin-top:20px;">
+        <img id="avatarImage" src="avatar-female.png" width="200" alt="Avatar">
+      </div>
     </section>
   `;
 
-  document.body.innerHTML += dashboardHTML;
-});
+  document.body.innerHTML += editorHTML;
+});<script src="maßeingabe.js"></script>
