@@ -1,33 +1,61 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
 
-  // Login-Formular ausblenden
-  document.getElementById('loginForm').style.display = 'none';
-  document.getElementById('registerForm').style.display = 'none';
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'none';
 
-  // Avatar-Editor anzeigen
-  const editorHTML = `
-    <section id="avatarEditor">
-      <h2>Dein Avatar Editor 🧍‍♀️</h2>
+    // Avatar-Editor anzeigen
+    const editorHTML = `
+      <section id="avatarEditor">
+        <h2>Dein Avatar Editor 🧍‍♀️</h2>
 
-      <label>Brustumfang (cm): <input type="number" id="brust"></label><br>
-      <label>Taillenumfang (cm): <input type="number" id="taille"></label><br>
-      <label>Hüftumfang (cm): <input type="number" id="huefte"></label><br>
-      <button onclick="updateAvatar()">Avatar aktualisieren</button>
+        <label>Brustumfang (cm): <input type="number" id="brust"></label><br>
+        <label>Taillenumfang (cm): <input type="number" id="taille"></label><br>
+        <label>Hüftumfang (cm): <input type="number" id="huefte"></label><br>
+        <button onclick="updateAvatar()">Avatar aktualisieren</button>
 
-      <div id="avatarPreview" style="margin-top:20px;">
-        <img id="avatarImage" src="avatar-female.png" width="200" alt="Avatar">
-      </div>
-    </section>
-  `;
+        <div id="avatarPreview" style="margin-top:20px;">
+          <img id="avatarImage" src="avatar-female.png" width="200" alt="Avatar">
+        </div>
+      </section>
+    `;
 
-  document.body.innerHTML += editorHTML;
-});<document.body.innerHTML += editorHTML;
+    document.body.innerHTML += editorHTML;
 
-const gespeicherteMaße = JSON.parse(localStorage.getItem("formlyfit_maße"));
-if (gespeicherteMaße) {
-  document.getElementById("brust").value = gespeicherteMaße.brust;
-  document.getElementById("taille").value = gespeicherteMaße.taille;
-  document.getElementById("huefte").value = gespeicherteMaße.huefte;
-  updateAvatar();
+    // gespeicherte Maße automatisch einfügen
+    const gespeicherteMaße = JSON.parse(localStorage.getItem("formlyfit_maße"));
+    if (gespeicherteMaße) {
+      document.getElementById("brust").value = gespeicherteMaße.brust;
+      document.getElementById("taille").value = gespeicherteMaße.taille;
+      document.getElementById("huefte").value = gespeicherteMaße.huefte;
+      updateAvatar();
+    }
+  });
+});
+
+function updateAvatar() {
+  const brust = document.getElementById("brust").value;
+  const taille = document.getElementById("taille").value;
+  const huefte = document.getElementById("huefte").value;
+
+  // Maße speichern
+  localStorage.setItem("formlyfit_maße", JSON.stringify({
+    brust,
+    taille,
+    huefte
+  }));
+
+  const avatar = document.getElementById("avatarImage");
+
+  // Vorschau-Logik (nur als Demo!)
+  if (brust < 90 && taille < 75) {
+    avatar.src = "avatar-female.png";
+  } else {
+    avatar.src = "avatar-male.png";
+  }
+
+  alert("Maße gespeichert ✅");
 }
