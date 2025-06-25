@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
 
     document.body.innerHTML += editorHTML;
-
+document.getElementById("brust").addEventListener("input", updateAvatarLive);
+document.getElementById("taille").addEventListener("input", updateAvatarLive);
+document.getElementById("huefte").addEventListener("input", updateAvatarLive);
     // gespeicherte Maße automatisch einfügen
     const gespeicherteMaße = JSON.parse(localStorage.getItem("formlyfit_maße"));
     if (gespeicherteMaße) {
