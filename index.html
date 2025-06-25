@@ -62,29 +62,24 @@
         }
       });
     });
-
     function updateAvatar() {
-      const brust = document.getElementById("brust").value;
-      const taille = document.getElementById("taille").value;
-      const huefte = document.getElementById("huefte").value;
+  const brust = document.getElementById("brust").value;
+  const taille = document.getElementById("taille").value;
+  const huefte = document.getElementById("huefte").value;
 
-      // Werte speichern
-      localStorage.setItem("formlyfit_maße", JSON.stringify({
-        brust,
-        taille,
-        huefte
-      }));
+  localStorage.setItem("formlyfit_maße", JSON.stringify({
+    brust,
+    taille,
+    huefte
+  }));
 
-      const avatar = document.getElementById("avatarImage");
-      if (brust < 90 && taille < 75) {
-        avatar.src = "avatar-female.png";
-      } else {
-        avatar.src = "avatar-male.png";
-      }
+  const avatar = document.getElementById("avatarImage");
 
-      alert("Maße gespeichert ✅");
-    }
-  </script>
+  if (brust < 90 && taille < 75) {
+    avatar.src = "https://formlyfit.github.io/avatar-female.png";
+  } else {
+    avatar.src = "https://formlyfit.github.io/avatar-male.png";
+  }
 
-</body>
-</html>
+  alert("Maße gespeichert ✅");
+}
