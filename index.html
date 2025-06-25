@@ -63,9 +63,9 @@
       });
     });
     function updateAvatar() {
-  const brust = document.getElementById("brust").value;
-  const taille = document.getElementById("taille").value;
-  const huefte = document.getElementById("huefte").value;
+  const brust = parseInt(document.getElementById("brust").value);
+  const taille = parseInt(document.getElementById("taille").value);
+  const huefte = parseInt(document.getElementById("huefte").value);
 
   localStorage.setItem("formlyfit_maße", JSON.stringify({
     brust,
@@ -75,11 +75,25 @@
 
   const avatar = document.getElementById("avatarImage");
 
-  if (brust < 90 && taille < 75) {
-    avatar.src = "https://formlyfit.github.io/avatar-female.png";
-  } else {
-    avatar.src = "https://formlyfit.github.io/avatar-male.png";
+  if (!avatar) {
+    console.error("Avatar-Element nicht gefunden!");
+    return;
   }
 
-  alert("Maße gespeichert ✅");
+  // Lade aus deinem Projektverzeichnis
+  if (brust < 90 && taille < 75) {
+    avatar.src = "./avatar-female.png";
+  } else {
+    avatar.src = "./avatar-male.png";
+  }
+
+  // Debug: Zeige sofort ob Bild gefunden wurde
+  avatar.onerror = () => {
+    alert("❌ Bild konnte nicht geladen werden!");
+    avatar.alt = "Fehler beim Laden";
+  };
+
+  avatar.onload = () => {
+    console.log("✅ Avatar geladen:", avatar.src);
+  };
 }
