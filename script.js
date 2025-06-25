@@ -22,4 +22,12 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   `;
 
   document.body.innerHTML += editorHTML;
-});<script src="maßeingabe.js"></script>
+});<document.body.innerHTML += editorHTML;
+
+const gespeicherteMaße = JSON.parse(localStorage.getItem("formlyfit_maße"));
+if (gespeicherteMaße) {
+  document.getElementById("brust").value = gespeicherteMaße.brust;
+  document.getElementById("taille").value = gespeicherteMaße.taille;
+  document.getElementById("huefte").value = gespeicherteMaße.huefte;
+  updateAvatar();
+}
