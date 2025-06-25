@@ -43,7 +43,6 @@ function updateAvatar() {
   const taille = document.getElementById("taille").value;
   const huefte = document.getElementById("huefte").value;
 
-  // Maße speichern
   localStorage.setItem("formlyfit_maße", JSON.stringify({
     brust,
     taille,
@@ -52,11 +51,10 @@ function updateAvatar() {
 
   const avatar = document.getElementById("avatarImage");
 
-  // Vorschau-Logik (nur als Demo!)
   if (brust < 90 && taille < 75) {
-    avatar.src = "avatar-female.png";
+    avatar.src = "https://raw.githubusercontent.com/formlyfit/formlyfit/main/avatar-female.png";
   } else {
-    avatar.src = "avatar-male.png";
+    avatar.src = "https://raw.githubusercontent.com/formlyfit/formlyfit/main/avatar-male.png";
   }
 
   alert("Maße gespeichert ✅");
